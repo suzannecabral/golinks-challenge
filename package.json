@@ -15,9 +15,11 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"test": "CI=true react-scripts test",
 		"eject": "react-scripts eject",
-		"postinstall": "husky install"
+		"lint": "eslint src --color",
+		"husky test": "test",
+		"husky-init": "husky install"
 	},
 	"husky": {
 		"hooks": {
