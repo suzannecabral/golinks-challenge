@@ -18,16 +18,7 @@
 		"test": "CI=true react-scripts test",
 		"eject": "react-scripts eject",
 		"lint": "eslint src --color",
-		"husky test": "test",
 		"husky-init": "husky install"
-	},
-	"husky": {
-		"hooks": {
-			"applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-			"pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-			"post-applypatch": "echo \"[Husky] post-applypatch\"",
-			"pre-commit": "echo \"[Husky] pre-commit asdf\""
-		}
 	},
 	"eslintConfig": {
 		"extends": [
