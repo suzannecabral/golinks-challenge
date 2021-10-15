@@ -1,1 +1,22 @@
-{}
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#5b9292",
+		"activityBar.inactiveForeground": "#8bd8d8",
+		"activityBar.activeForeground": "#fffbfd",
+		"titleBar.activeBackground": "#5b9292",
+		"titleBar.inactiveBackground": "#5b9292",
+		"titleBar.activeForeground": "#fffbfd",
+		"titleBar.inactiveForeground": "#fffbfd"
+	},
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		// disable prettier for JS (use eslint config)
+		"editor.defaultFormatter": null,
+		"editor.formatOnSave": false
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.alwaysShowStatus": true
+}

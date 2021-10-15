@@ -1,0 +1,39 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb", "prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "prettier"],
+	"rules": {
+		// for strict errors instead, use "error"
+		"prettier/prettier": [
+			"warn",
+			{
+				// custom prettier rules go here:
+				// this file overwrites anything in prettierrc
+			}
+		],
+		// prevent prettier conflicts:
+		"arrow-body-style": "off",
+		"prefer-arrow-callback": "off",
+
+		// customize airbnb styleguide:
+		"no-unused-vars": [
+			"error",
+			{
+				"vars": "local",
+				"args": "none"
+			}
+		],
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+	}
+}
