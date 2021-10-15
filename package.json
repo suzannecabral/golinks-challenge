@@ -6,6 +6,7 @@
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
 		"@testing-library/user-event": "^12.1.10",
+		"husky": "^7.0.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "4.0.3",
@@ -20,9 +21,9 @@
 	},
 	"husky": {
 		"hooks": {
-      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-      "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-      "post-applypatch": "echo \"[Husky] post-applypatch\"",
+			"applypatch-msg": "echo \"[Husky] applypatch-msg\"",
+			"pre-applypatch": "echo \"[Husky] pre-applypatch\"",
+			"post-applypatch": "echo \"[Husky] post-applypatch\"",
 			"pre-commit": "echo \"[Husky] pre-commit\""
 		}
 	},
@@ -53,7 +54,6 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.26.1",
 		"eslint-plugin-react-hooks": "^4.2.0",
-		"husky": "^7.0.2",
 		"prettier": "^2.4.1"
 	}
 }
