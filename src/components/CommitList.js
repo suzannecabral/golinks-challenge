@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Typography, List, ListItem, ListItemText } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
+import { Typography, List, ListItem } from "@mui/material";
 // import axios from "axios";
 // import shortid from "shortid";
 // import dotenv from "dotenv";
-import testReposGithub from "../api/testReposGithub.json";
-
-// const useStyles = makeStyles({
-//   ellipsis: {
-//     border: "1px solid blue",
-//   },
-// });
+import testCommitsGithub from "../api/testCommitsGithub.json";
 
 const RepoList = () => {
-  // const classes = useStyles();
   const [orgRepos, setOrgRepos] = useState([]);
   const getRepos = () => {
     // axios
@@ -29,7 +21,7 @@ const RepoList = () => {
     //   .catch((err) => {
     //     return err;
     //   });
-    setOrgRepos(testReposGithub);
+    setOrgRepos(testCommitsGithub);
   };
 
   useEffect(() => {
@@ -39,26 +31,14 @@ const RepoList = () => {
   return (
     <div>
       <Typography variant="h5" component="h2">
-        Repos:
+        Commits:
       </Typography>
       <List dense>
         {orgRepos.map((repo) => {
           return (
             <ListItem key={repo.id}>
-              <ListItemText
-                secondaryTypographyProps={{
-                  // display: "block",
-                  width: "45vw",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-                primary={`/${repo.name}`}
-                secondary={
-                  repo.description ? repo.description : "(no description)"
-                }
-                dense
-              />
+              ({repo.allow_forking ? repo.forks_count : 0}) {repo.name}:{" "}
+              {repo.description}
             </ListItem>
           );
         })}
