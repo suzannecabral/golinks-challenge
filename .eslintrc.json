@@ -34,12 +34,13 @@
 
 		// customize airbnb styleguide:
 		"no-unused-vars": [
-			"error",
+			"warn",
 			{
 				"vars": "local",
 				"args": "none"
 			}
 		],
+		"no-console": 1,
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
 		"react/prop-types": [2, { "ignore": [] }]
 	}

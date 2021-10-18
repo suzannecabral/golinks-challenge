@@ -2,4 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # yarn test
-yarn test src
+# yarn test src
+echo "git pre-commit hook placeholder"
