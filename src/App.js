@@ -21,45 +21,45 @@ import "@fontsource/roboto/700.css";
 //   },
 // });
 
-const getDesignTokens = (mode) => ({
-  palette: {
-    mode,
-    primary: {
-      ...amber,
-      ...(mode === "dark" && {
-        main: amber[300],
-      }),
-    },
-    ...(mode === "dark" && {
-      background: {
-        default: deepOrange[900],
-        paper: deepOrange[900],
-      },
-    }),
-    text: {
-      ...(mode === "light"
-        ? {
-            primary: grey[900],
-            secondary: grey[800],
-          }
-        : {
-            primary: "#fff",
-            secondary: grey[500],
-          }),
-    },
-  },
-});
+// const getDesignTokens = (mode) => ({
+//   palette: {
+//     mode,
+//     primary: {
+//       ...amber,
+//       ...(mode === "dark" && {
+//         main: amber[300],
+//       }),
+//     },
+//     ...(mode === "dark" && {
+//       background: {
+//         default: deepOrange[900],
+//         paper: deepOrange[900],
+//       },
+//     }),
+//     text: {
+//       ...(mode === "light"
+//         ? {
+//             primary: grey[900],
+//             secondary: grey[800],
+//           }
+//         : {
+//             primary: "#fff",
+//             secondary: grey[500],
+//           }),
+//     },
+//   },
+// });
 
-const darkModeTheme = createTheme(getDesignTokens("dark"));
+// const darkModeTheme = createTheme(getDesignTokens("dark"));
 
 function App() {
   // TODO: Material Theme
   // TODO: transition animations
   const theme = useTheme();
   return (
-    <ThemeProvider theme={darkModeTheme}>
-      <div>
-        <Box
+    // <ThemeProvider theme={darkModeTheme}>
+    <div>
+      {/* <Box
           sx={{
             display: "flex",
             width: "100%",
@@ -72,20 +72,20 @@ function App() {
           }}
         >
           This is a {theme.palette.mode} mode theme with custom palette
-        </Box>
-        {/* TODO: org title from api */}
-        <Box sx={{ display: "Flex", flexDirection: "row" }}>
-          <Typography variant="h3" component="h1">
-            Netflix
-          </Typography>
-          <OrgSelect />
-        </Box>
-        <Box sx={{ display: "Flex" }}>
-          <RepoList />
-          <CommitList />
-        </Box>
-      </div>
-    </ThemeProvider>
+        </Box> */}
+      {/* TODO: org title from api */}
+      <Box sx={{ display: "Flex", flexDirection: "row" }}>
+        <Typography variant="h3" component="h1">
+          Netflix
+        </Typography>
+        {/* <OrgSelect /> */}
+      </Box>
+      <Box sx={{ display: "Flex" }}>
+        <RepoList />
+        <CommitList />
+      </Box>
+      {/* </ThemeProvider> */}
+    </div>
   );
 }
 
