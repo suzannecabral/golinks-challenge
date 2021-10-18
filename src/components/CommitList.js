@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Typography, List, ListItem } from "@mui/material";
+import { Typography, List, ListItem, ListItemText } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
 // import axios from "axios";
 // import shortid from "shortid";
 // import dotenv from "dotenv";
 import testCommitsGithub from "../api/testCommitsGithub.json";
 
+// const useStyles = makeStyles({
+//   ellipsis: {
+//     border: "1px solid blue",
+//   },
+// });
+
 const RepoList = () => {
-  const [orgRepos, setOrgRepos] = useState([]);
-  const getRepos = () => {
+  // const classes = useStyles();
+  const [repoCommits, setRepoCommits] = useState([]);
+  const getCommits = () => {
     // axios
     //   .get("https://api.github.com/orgs/netflix/repos", {
     //     headers: {
@@ -16,16 +24,16 @@ const RepoList = () => {
     //     },
     //   })
     //   .then((res) => {
-    //     setOrgRepos(res.data);
+    //     setRepoCommits(res.data);
     //   })
     //   .catch((err) => {
     //     return err;
     //   });
-    setOrgRepos(testCommitsGithub);
+    setRepoCommits(testCommitsGithub);
   };
 
   useEffect(() => {
-    getRepos();
+    getCommits();
   }, []);
 
   return (
@@ -34,11 +42,23 @@ const RepoList = () => {
         Commits:
       </Typography>
       <List dense>
-        {orgRepos.map((repo) => {
+        {repoCommits.map((commit) => {
           return (
-            <ListItem key={repo.id}>
-              ({repo.allow_forking ? repo.forks_count : 0}) {repo.name}:{" "}
-              {repo.description}
+            <ListItem key={commit.id}>
+              <ListItemText
+                secondaryTypographyProps={{
+                  width: "45vw",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+                primary={commit.commit.author.name}
+                secondary={commit.sha}
+                // secondary={
+                //   commit.description ? commit.description : "(no description)"
+                // }
+                dense
+              />
             </ListItem>
           );
         })}
