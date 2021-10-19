@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { Typography, List, ListItem, ListItemText } from "@mui/material";
+import React, { useState, useEffect } from "react";
+
 // import { makeStyles } from "@mui/styles";
-// import axios from "axios";
+import axios from "axios";
 // import shortid from "shortid";
 // import dotenv from "dotenv";
-import testReposGithub from "../api/testReposGithub.json";
+// import testReposGithub from "../api/testReposGithub.json";
 
 // const useStyles = makeStyles({
 //   ellipsis: {
@@ -16,20 +17,23 @@ const RepoList = () => {
   // const classes = useStyles();
   const [orgRepos, setOrgRepos] = useState([]);
   const getRepos = () => {
-    // axios
-    //   .get("https://api.github.com/orgs/netflix/repos", {
-    //     headers: {
-    //       // TODO: how to get OAUTH_TOKEN
-    //       Authorization: `token ${process.env.OAUTH_TOKEN}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setOrgRepos(res.data);
-    //   })
-    //   .catch((err) => {
-    //     return err;
-    //   });
-    setOrgRepos(testReposGithub);
+    axios
+      .get("https://api.github.com/orgs/netflix/repos", {
+        headers: {
+          Authorization: `token ${process.env.REACT_APP_GH_PAT}`,
+        },
+      })
+      .then((res) => {
+        setOrgRepos(res.data);
+        console.log("API loaded repo list");
+      })
+      .catch((err) => {
+        console.log("Error loading repo list");
+        return err;
+      })
+      .finally(() => {
+        console.log("API request finished");
+      });
   };
 
   useEffect(() => {

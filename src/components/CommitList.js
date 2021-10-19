@@ -4,7 +4,7 @@ import { Typography, List, ListItem, ListItemText } from "@mui/material";
 // import axios from "axios";
 // import shortid from "shortid";
 // import dotenv from "dotenv";
-import testCommitsGithub from "../api/testCommitsGithub.json";
+// import testCommitsGithub from "../api/testCommitsGithub.json";
 
 // const useStyles = makeStyles({
 //   ellipsis: {
@@ -19,8 +19,8 @@ const RepoList = () => {
     // axios
     //   .get("https://api.github.com/orgs/netflix/repos", {
     //     headers: {
-    //       // TODO: how to get OAUTH_TOKEN
-    //       Authorization: `token ${process.env.OAUTH_TOKEN}`,
+    //       // TODO: how to get GH_PAT
+    //       Authorization: `token ${process.env.GH_PAT}`,
     //     },
     //   })
     //   .then((res) => {
@@ -29,7 +29,7 @@ const RepoList = () => {
     //   .catch((err) => {
     //     return err;
     //   });
-    setRepoCommits(testCommitsGithub);
+    setRepoCommits([]);
   };
 
   useEffect(() => {
