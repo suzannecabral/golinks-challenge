@@ -1,9 +1,7 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import OrgSelect from "./components/OrgSelect";
 import RepoList from "./components/RepoList";
-import CommitFrame from "./components/CommitFrame";
-import RepoContext from "./contexts/RepoContext";
+import CommitList from "./components/CommitList";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -27,20 +25,18 @@ function App() {
         {/* <OrgSelect /> */}
       </Box>
       <Box sx={{ display: "Flex" }}>
-        <RepoContext.Provider>
-          <RepoList
-            commitsUrl={commitsUrl}
-            setCommitsUrl={setCommitsUrl}
-            commitsLoading={commitsLoading}
-            setCommitsLoading={setCommitsLoading}
-          />
-          <CommitFrame
-            commitsUrl={commitsUrl}
-            setCommitsUrl={setCommitsUrl}
-            commitsLoading={commitsLoading}
-            setCommitsLoading={setCommitsLoading}
-          />
-        </RepoContext.Provider>
+        <RepoList
+          commitsUrl={commitsUrl}
+          setCommitsUrl={setCommitsUrl}
+          commitsLoading={commitsLoading}
+          setCommitsLoading={setCommitsLoading}
+        />
+        <CommitList
+          commitsUrl={commitsUrl}
+          setCommitsUrl={setCommitsUrl}
+          commitsLoading={commitsLoading}
+          setCommitsLoading={setCommitsLoading}
+        />
       </Box>
     </Box>
   );
