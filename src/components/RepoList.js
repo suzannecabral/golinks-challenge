@@ -1,4 +1,12 @@
-import { Typography, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 // import { makeStyles } from "@mui/styles";
@@ -7,18 +15,21 @@ import axios from "axios";
 // import dotenv from "dotenv";
 // import testReposGithub from "../api/testReposGithub.json";
 
-// const useStyles = makeStyles({
-//   ellipsis: {
-//     border: "1px solid blue",
-//   },
-// });
-
 const RepoList = () => {
-  // const classes = useStyles();
+  // #TODO: make this changeable
+  const [orgUrl, setOrgUrl] = useState(
+    "https://api.github.com/orgs/netflix/repos"
+  );
   const [orgRepos, setOrgRepos] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleListClick = (e, idx) => {
+    setSelectedIndex(idx);
+  };
+
   const getRepos = () => {
     axios
-      .get("https://api.github.com/orgs/netflix/repos", {
+      .get(orgUrl, {
         headers: {
           Authorization: `token ${process.env.REACT_APP_GH_PAT}`,
         },
@@ -41,14 +52,18 @@ const RepoList = () => {
   }, []);
 
   return (
-    <div>
+    <Box>
       <Typography variant="h5" component="h2">
         Repos:
       </Typography>
       <List dense>
-        {orgRepos.map((repo) => {
+        {orgRepos.map((repo, idx) => {
           return (
-            <ListItem key={repo.id}>
+            <ListItemButton
+              key={repo.id}
+              selected={selectedIndex === idx}
+              onClick={(e) => handleListClick(e, idx)}
+            >
               <ListItemText
                 secondaryTypographyProps={{
                   // display: "block",
@@ -61,13 +76,12 @@ const RepoList = () => {
                 secondary={
                   repo.description ? repo.description : "(no description)"
                 }
-                dense
               />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>
-    </div>
+    </Box>
   );
 };
 

@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Typography, List, ListItem, ListItemText } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
-// import axios from "axios";
-// import shortid from "shortid";
-// import dotenv from "dotenv";
-// import testCommitsGithub from "../api/testCommitsGithub.json";
+import { Box, Typography, List, ListItem, ListItemText } from "@mui/material";
+import axios from "axios";
+import propTypes from "prop-types";
 
-// const useStyles = makeStyles({
-//   ellipsis: {
-//     border: "1px solid blue",
-//   },
-// });
-
-const RepoList = () => {
-  // const classes = useStyles();
+const CommitList = (props) => {
+  const { commitsUrl, setCommitsUrl } = props;
   const [repoCommits, setRepoCommits] = useState([]);
+
   const getCommits = () => {
-    // axios
-    //   .get("https://api.github.com/orgs/netflix/repos", {
-    //     headers: {
-    //       // TODO: how to get GH_PAT
-    //       Authorization: `token ${process.env.GH_PAT}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setRepoCommits(res.data);
-    //   })
-    //   .catch((err) => {
-    //     return err;
-    //   });
-    setRepoCommits([]);
+    axios
+      .get(commitsUrl, {
+        headers: {
+          Authorization: `token ${process.env.REACT_APP_GH_PAT}`,
+        },
+      })
+      .then((res) => {
+        setRepoCommits(res.data);
+        console.log("API loaded repo list");
+      })
+      .catch((err) => {
+        console.log("Error loading repo list");
+        return err;
+      })
+      .finally(() => {
+        console.log("API request finished");
+      });
   };
 
   useEffect(() => {
@@ -37,7 +32,7 @@ const RepoList = () => {
   }, []);
 
   return (
-    <div>
+    <Box>
       <Typography variant="h5" component="h2">
         Commits:
       </Typography>
@@ -54,17 +49,18 @@ const RepoList = () => {
                 }}
                 primary={commit.commit.author.name}
                 secondary={commit.sha}
-                // secondary={
-                //   commit.description ? commit.description : "(no description)"
-                // }
-                dense
               />
             </ListItem>
           );
         })}
       </List>
-    </div>
+    </Box>
   );
 };
 
-export default RepoList;
+CommitList.propTypes = {
+  commitsUrl: propTypes.string.isRequired,
+  setCommitsUrl: propTypes.func.isRequired,
+};
+
+export default CommitList;

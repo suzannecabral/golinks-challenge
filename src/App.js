@@ -1,78 +1,24 @@
 import React from "react";
-import {
-  Typography,
-  Box,
-  useTheme,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material";
-import { amber, deepOrange, grey } from "@mui/material/colors";
+import { Typography, Box } from "@mui/material";
 import OrgSelect from "./components/OrgSelect";
 import RepoList from "./components/RepoList";
-import CommitList from "./components/CommitList";
+import CommitFrame from "./components/CommitFrame";
+import OrgContext from "./contexts/OrgContext";
+import RepoContext from "./contexts/RepoContext";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-// const theme = createTheme({
-//   palette: {
-//     mode: "dark",
-//   },
-// });
-
-// const getDesignTokens = (mode) => ({
-//   palette: {
-//     mode,
-//     primary: {
-//       ...amber,
-//       ...(mode === "dark" && {
-//         main: amber[300],
-//       }),
-//     },
-//     ...(mode === "dark" && {
-//       background: {
-//         default: deepOrange[900],
-//         paper: deepOrange[900],
-//       },
-//     }),
-//     text: {
-//       ...(mode === "light"
-//         ? {
-//             primary: grey[900],
-//             secondary: grey[800],
-//           }
-//         : {
-//             primary: "#fff",
-//             secondary: grey[500],
-//           }),
-//     },
-//   },
-// });
-
-// const darkModeTheme = createTheme(getDesignTokens("dark"));
-
 function App() {
-  // TODO: Material Theme
+  const [selectedRepo, setSelectedRepo] = React.useState({});
+  const [commitsUrl, setCommitsUrl] = React.useState(
+    "https://api.github.com/repos/Netflix/astyanax/commits"
+  );
+
   // TODO: transition animations
-  const theme = useTheme();
   return (
-    // <ThemeProvider theme={darkModeTheme}>
-    <div>
-      {/* <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            bgcolor: "background.default",
-            color: "text.primary",
-            borderRadius: 1,
-            p: 3,
-          }}
-        >
-          This is a {theme.palette.mode} mode theme with custom palette
-        </Box> */}
+    <Box>
       {/* TODO: org title from api */}
       <Box sx={{ display: "Flex", flexDirection: "row" }}>
         <Typography variant="h3" component="h1">
@@ -81,11 +27,14 @@ function App() {
         {/* <OrgSelect /> */}
       </Box>
       <Box sx={{ display: "Flex" }}>
-        <RepoList />
-        <CommitList />
+        <RepoContext.Provider>
+          <OrgContext.Provider>
+            <RepoList />
+          </OrgContext.Provider>
+          <CommitFrame commitsUrl={commitsUrl} setCommitsUrl={setCommitsUrl} />
+        </RepoContext.Provider>
       </Box>
-      {/* </ThemeProvider> */}
-    </div>
+    </Box>
   );
 }
 
