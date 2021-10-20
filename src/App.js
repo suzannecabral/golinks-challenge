@@ -15,6 +15,7 @@ function App() {
   const [commitsUrl, setCommitsUrl] = React.useState(
     "https://api.github.com/repos/Netflix/astyanax/commits"
   );
+  const [commitsLoading, setCommitsLoading] = React.useState(false);
 
   // TODO: transition animations
   return (
@@ -29,9 +30,19 @@ function App() {
       <Box sx={{ display: "Flex" }}>
         <RepoContext.Provider>
           <OrgContext.Provider>
-            <RepoList />
+            <RepoList
+              commitsUrl={commitsUrl}
+              setCommitsUrl={setCommitsUrl}
+              commitsLoading={commitsLoading}
+              setCommitsLoading={setCommitsLoading}
+            />
           </OrgContext.Provider>
-          <CommitFrame commitsUrl={commitsUrl} setCommitsUrl={setCommitsUrl} />
+          <CommitFrame
+            commitsUrl={commitsUrl}
+            setCommitsUrl={setCommitsUrl}
+            commitsLoading={commitsLoading}
+            setCommitsLoading={setCommitsLoading}
+          />
         </RepoContext.Provider>
       </Box>
     </Box>

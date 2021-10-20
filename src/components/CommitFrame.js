@@ -1,15 +1,25 @@
 import React from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, CircularProgress } from "@mui/material";
 import propTypes from "prop-types";
 import CommitList from "./CommitList";
 import CommitDetails from "./CommitDetails";
 
 const CommitFrame = (props) => {
-  const { commitsUrl, setCommitsUrl } = props;
+  const { commitsUrl, setCommitsUrl, commitsLoading, setCommitsLoading } =
+    props;
   return (
     <Box>
-      <Typography variant="h2">Frame</Typography>
-      <CommitList commitsUrl={commitsUrl} setCommitsUrl={setCommitsUrl} />
+      {commitsLoading ? (
+        <CircularProgress />
+      ) : (
+        <CommitList
+          commitsUrl={commitsUrl}
+          setCommitsUrl={setCommitsUrl}
+          commitsLoading={commitsLoading}
+          setCommitsLoading={setCommitsLoading}
+        />
+      )}
+      {/* <CommitList commitsUrl={commitsUrl} setCommitsUrl={setCommitsUrl} /> */}
       <CommitDetails commitsUrl={commitsUrl} />
     </Box>
   );
@@ -18,6 +28,8 @@ const CommitFrame = (props) => {
 CommitFrame.propTypes = {
   commitsUrl: propTypes.string.isRequired,
   setCommitsUrl: propTypes.func.isRequired,
+  commitsLoading: propTypes.bool.isRequired,
+  setCommitsLoading: propTypes.func.isRequired,
 };
 
 export default CommitFrame;

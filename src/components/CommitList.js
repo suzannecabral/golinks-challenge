@@ -29,7 +29,7 @@ const CommitList = (props) => {
 
   useEffect(() => {
     getCommits();
-  }, []);
+  }, [commitsUrl]);
 
   return (
     <Box>

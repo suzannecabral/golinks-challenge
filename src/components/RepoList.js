@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import propTypes from "prop-types";
 import {
   Box,
   Typography,
@@ -5,7 +7,6 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
 
 // import { makeStyles } from "@mui/styles";
 import axios from "axios";
@@ -13,16 +14,43 @@ import axios from "axios";
 // import dotenv from "dotenv";
 // import testReposGithub from "../api/testReposGithub.json";
 
-const RepoList = () => {
-  // #TODO: make this changeable
+const RepoList = (props) => {
+  const { commitsUrl, setCommitsUrl, commitsLoading, setCommitsLoading } =
+    props;
+
+  // TODO: make org changeable
   const [orgUrl, setOrgUrl] = useState(
     "https://api.github.com/orgs/netflix/repos"
   );
   const [orgRepos, setOrgRepos] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  // const commitsLoadingPromise = (resolve, reject) => {
+  //   resolve(true);
+  //   reject(new Error("Error Loading Commit List for Selected Repo"));
+  // };
+
+  // function resolveAfter2Seconds() {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       setCommitsLoading(false);
+  //       resolve("resolved");
+  //     }, 2000);
+  //   });
+  // }
+  // const resolveCommitLoading = () => {
+  //   return new Promise((resolve) => {
+  //     setCommitsLoading(false);
+  //     resolve("resolved");
+  //   });
+  // };
 
   const handleListClick = (e, idx) => {
     setSelectedIndex(idx);
+
+    // remove /{sha} from commits_url
+    const newUrl = orgRepos[idx].commits_url;
+    setCommitsUrl(newUrl.substr(0, newUrl.lastIndexOf("/") - 1));
   };
 
   const getRepos = () => {
@@ -81,6 +109,13 @@ const RepoList = () => {
       </List>
     </Box>
   );
+};
+
+RepoList.propTypes = {
+  commitsUrl: propTypes.string.isRequired,
+  setCommitsUrl: propTypes.func.isRequired,
+  commitsLoading: propTypes.bool.isRequired,
+  setCommitsLoading: propTypes.func.isRequired,
 };
 
 export default RepoList;
