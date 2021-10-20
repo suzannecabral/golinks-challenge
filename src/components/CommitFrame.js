@@ -20,7 +20,7 @@ const CommitFrame = (props) => {
         />
       )}
       {/* <CommitList commitsUrl={commitsUrl} setCommitsUrl={setCommitsUrl} /> */}
-      <CommitDetails commitsUrl={commitsUrl} />
+      {/* <CommitDetails commitsUrl={commitsUrl} /> */}
     </Box>
   );
 };
