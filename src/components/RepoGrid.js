@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
+// import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 // import { makeStyles } from "@mui/styles";
 import axios from "axios";
@@ -20,8 +21,7 @@ const RepoList = (props) => {
 
   // TODO: make org changeable
   const [orgUrl, setOrgUrl] = useState(
-    // "https://api.github.com/orgs/netflix/repos"
-    "https://api.github.com/search/repositories?q=Netflix&sort=stars&order=desc"
+    "https://api.github.com/orgs/netflix/repos"
   );
   const [orgRepos, setOrgRepos] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -83,31 +83,6 @@ const RepoList = (props) => {
       <Typography variant="h5" component="h2">
         Repos:
       </Typography>
-      <List dense="true" sx={{ overflowY: "scroll" }}>
-        {orgRepos.map((repo, idx) => {
-          return (
-            <ListItemButton
-              key={repo.id}
-              selected={selectedIndex === idx}
-              onClick={(e) => handleListClick(e, idx)}
-            >
-              <ListItemText
-                secondaryTypographyProps={{
-                  // display: "block",
-                  width: "45vw",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-                primary={`/${repo.name}`}
-                secondary={
-                  repo.description ? repo.description : "(no description)"
-                }
-              />
-            </ListItemButton>
-          );
-        })}
-      </List>
     </Box>
   );
 };
