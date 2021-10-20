@@ -7,14 +7,15 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-
+import StarIcon from "@mui/icons-material/Star";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 // import { makeStyles } from "@mui/styles";
 import axios from "axios";
 // import shortid from "shortid";
 // import dotenv from "dotenv";
 // import testReposGithub from "../api/testReposGithub.json";
 
-const RepoList = (props) => {
+const RepoBox = (props) => {
   const { commitsUrl, setCommitsUrl, commitsLoading, setCommitsLoading } =
     props;
 
@@ -82,7 +83,7 @@ const RepoList = (props) => {
       <Typography variant="h5" component="h2">
         Repos:
       </Typography>
-      <List dense="true" sx={{ overflowY: "scroll" }}>
+      <List sx={{ overflowY: "scroll" }}>
         {orgRepos.map((repo, idx) => {
           return (
             <ListItemButton
@@ -90,19 +91,47 @@ const RepoList = (props) => {
               selected={selectedIndex === idx}
               onClick={(e) => handleListClick(e, idx)}
             >
-              <ListItemText
-                secondaryTypographyProps={{
-                  // display: "block",
-                  width: "45vw",
+              <Box
+                sx={{
+                  display: "flex",
+                  flexFlow: "row",
+                  justifyContent: "spaceBetween",
+                  width: "140px",
+                }}
+              >
+                <Box>
+                  <Typography variant="caption">
+                    {repo.stargazers_count.toLocaleString("en-US")}
+                  </Typography>
+                  <StarIcon />
+                </Box>
+                <Box>
+                  <Typography variant="caption">
+                    {repo.forks.toLocaleString("en-US")}
+                  </Typography>
+                  <AccountTreeIcon />
+                </Box>
+              </Box>
+              <Typography
+                variant="subtitle2"
+                display="block"
+                sx={{ display: "block", marginRight: "12px" }}
+              >
+                /${repo.name}
+              </Typography>
+              <Typography
+                variant="caption"
+                display="block"
+                sx={{
+                  display: "block",
+                  width: "30vw",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                 }}
-                primary={`/${repo.name}`}
-                secondary={
-                  repo.description ? repo.description : "(no description)"
-                }
-              />
+              >
+                {repo.description ? repo.description : "(no description)"}
+              </Typography>
             </ListItemButton>
           );
         })}
@@ -111,11 +140,11 @@ const RepoList = (props) => {
   );
 };
 
-RepoList.propTypes = {
+RepoBox.propTypes = {
   commitsUrl: propTypes.string.isRequired,
   setCommitsUrl: propTypes.func.isRequired,
   commitsLoading: propTypes.bool.isRequired,
   setCommitsLoading: propTypes.func.isRequired,
 };
 
-export default RepoList;
+export default RepoBox;

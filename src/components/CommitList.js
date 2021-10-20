@@ -43,7 +43,7 @@ const CommitList = (props) => {
       <Typography variant="h5" component="h2">
         Commits:
       </Typography>
-      <Box>
+      <Box sx={{ overflowY: "scroll", height: "90vh" }}>
         {repoCommits.map((commit, idx) => {
           const commitDate = new Date(commit.commit.author.date);
           return (
