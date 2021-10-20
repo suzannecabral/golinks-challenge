@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 import RepoList from "./components/RepoList";
+import RepoGrid from "./components/RepoGrid";
 import CommitList from "./components/CommitList";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -25,7 +26,13 @@ function App() {
         {/* <OrgSelect /> */}
       </Box>
       <Box sx={{ display: "Flex" }}>
-        <RepoList
+        {/* <RepoList
+          commitsUrl={commitsUrl}
+          setCommitsUrl={setCommitsUrl}
+          commitsLoading={commitsLoading}
+          setCommitsLoading={setCommitsLoading}
+        /> */}
+        <RepoGrid
           commitsUrl={commitsUrl}
           setCommitsUrl={setCommitsUrl}
           commitsLoading={commitsLoading}
