@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Box,
+  Link,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import axios from "axios";
 import propTypes from "prop-types";
 
@@ -36,24 +43,50 @@ const CommitList = (props) => {
       <Typography variant="h5" component="h2">
         Commits:
       </Typography>
-      <List dense>
-        {repoCommits.map((commit) => {
+      <Box>
+        {repoCommits.map((commit, idx) => {
+          const commitDate = new Date(commit.commit.author.date);
           return (
-            <ListItem key={commit.id}>
-              <ListItemText
-                secondaryTypographyProps={{
+            <Box sx={{ marginBottom: "12px" }} key={commit.id}>
+              <Link
+                href={commit.html_url}
+                variant="subtitle2"
+                sx={{
+                  display: "block",
+                  width: "45vw",
+                  // overflow: "hidden",
+                  // textOverflow: "ellipsis",
+                  // whiteSpace: "nowrap",
+                }}
+              >
+                {commit.commit.message}
+              </Link>
+              <Typography variant="caption" sx={{ display: "block" }}>
+                by {commit.commit.author.name}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ display: "block", color: "#a8a7a7" }}
+              >
+                {commitDate.toTimeString()}
+              </Typography>
+
+              <Typography
+                variant="caption"
+                sx={{
                   width: "45vw",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
+                  color: "#a8a7a7",
                 }}
-                primary={commit.commit.author.name}
-                secondary={commit.sha}
-              />
-            </ListItem>
+              >
+                {commit.sha}
+              </Typography>
+            </Box>
           );
         })}
-      </List>
+      </Box>
     </Box>
   );
 };

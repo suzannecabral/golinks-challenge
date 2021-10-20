@@ -26,18 +26,18 @@ function App() {
         {/* <OrgSelect /> */}
       </Box>
       <Box sx={{ display: "Flex" }}>
-        {/* <RepoList
-          commitsUrl={commitsUrl}
-          setCommitsUrl={setCommitsUrl}
-          commitsLoading={commitsLoading}
-          setCommitsLoading={setCommitsLoading}
-        /> */}
-        <RepoGrid
+        <RepoList
           commitsUrl={commitsUrl}
           setCommitsUrl={setCommitsUrl}
           commitsLoading={commitsLoading}
           setCommitsLoading={setCommitsLoading}
         />
+        {/* <RepoGrid
+          commitsUrl={commitsUrl}
+          setCommitsUrl={setCommitsUrl}
+          commitsLoading={commitsLoading}
+          setCommitsLoading={setCommitsLoading}
+        /> */}
         <CommitList
           commitsUrl={commitsUrl}
           setCommitsUrl={setCommitsUrl}
