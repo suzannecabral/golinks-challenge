@@ -39,6 +39,7 @@
   * automated testing 
   
 * Expansion/New Features/Shiny
+  * make org changeable, ideally with an autocomplete  
   * automated testing on pre-commit hooks
   * sorting dynamically with mui DataGrid
   * git chart, or ways to explore each repo's commit tree
