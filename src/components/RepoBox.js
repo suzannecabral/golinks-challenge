@@ -22,6 +22,7 @@ const RepoBox = (props) => {
   // TODO: make org changeable
   const [orgUrl, setOrgUrl] = useState(
     "https://api.github.com/orgs/netflix/repos"
+    // "https://api.github.com/search/repositories?q=org:Netflix&sort=stars&order=desc"
   );
   const [orgRepos, setOrgRepos] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -96,42 +97,58 @@ const RepoBox = (props) => {
                   display: "flex",
                   flexFlow: "row",
                   justifyContent: "spaceBetween",
-                  width: "140px",
                 }}
               >
-                <Box>
-                  <Typography variant="caption">
-                    {repo.stargazers_count.toLocaleString("en-US")}
-                  </Typography>
-                  <StarIcon />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexFlow: "row",
+                    justifyContent: "spaceBetween",
+                    width: "140px",
+                  }}
+                >
+                  <Box>
+                    <Typography variant="caption">
+                      {repo.stargazers_count.toLocaleString("en-US")}
+                    </Typography>
+                    <StarIcon />
+                  </Box>
+                  <Box>
+                    <Typography variant="caption">
+                      {repo.forks.toLocaleString("en-US")}
+                    </Typography>
+                    <AccountTreeIcon />
+                  </Box>
                 </Box>
-                <Box>
-                  <Typography variant="caption">
-                    {repo.forks.toLocaleString("en-US")}
+                <Typography
+                  variant="subtitle2"
+                  display="block"
+                  sx={{ display: "block", marginRight: "12px" }}
+                >
+                  /${repo.name}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  display="block"
+                  sx={{
+                    display: "block",
+                    width: "30vw",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {repo.description ? repo.description : "(no description)"}
+                </Typography>
+                <Box sx={{ marginLeft: "24px", textAlign: "right" }}>
+                  <Typography variant="caption" display="block">
+                    {repo.created_at}
                   </Typography>
-                  <AccountTreeIcon />
+                  <Typography variant="caption" sx={{ textAlign: "right" }}>
+                    {repo.language}
+                  </Typography>
                 </Box>
               </Box>
-              <Typography
-                variant="subtitle2"
-                display="block"
-                sx={{ display: "block", marginRight: "12px" }}
-              >
-                /${repo.name}
-              </Typography>
-              <Typography
-                variant="caption"
-                display="block"
-                sx={{
-                  display: "block",
-                  width: "30vw",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {repo.description ? repo.description : "(no description)"}
-              </Typography>
             </ListItemButton>
           );
         })}

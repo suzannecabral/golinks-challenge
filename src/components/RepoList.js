@@ -20,7 +20,8 @@ const RepoList = (props) => {
 
   // TODO: make org changeable
   const [orgUrl, setOrgUrl] = useState(
-    "https://api.github.com/orgs/netflix/repos"
+    // "https://api.github.com/orgs/netflix/repos"
+    "https://api.github.com/search/repositories?q=Netflix&sort=stars&order=desc"
   );
   const [orgRepos, setOrgRepos] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
