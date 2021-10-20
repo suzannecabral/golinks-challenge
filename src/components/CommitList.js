@@ -16,14 +16,14 @@ const CommitList = (props) => {
       })
       .then((res) => {
         setRepoCommits(res.data);
-        console.log("API loaded repo list");
+        // console.log("API loaded repo list");
       })
       .catch((err) => {
-        console.log("Error loading repo list");
+        // console.log("Error loading repo list");
         return err;
       })
       .finally(() => {
-        console.log("API request finished");
+        // console.log("API request finished");
       });
   };
 
